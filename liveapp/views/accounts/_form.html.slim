@@ -1,0 +1,7 @@
+#lower_form
+  = form_for @account do |f|
+    .fieldset
+      = f.text_field :name, :autofocus => 'true', :placeholder => 'Name'
+    .fieldset
+      = f.text_field :analytics_id, :placeholder => 'Google Analytics ID'
+    = f.submit :id => 'submit'

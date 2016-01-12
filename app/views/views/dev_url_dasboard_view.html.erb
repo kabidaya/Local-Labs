@@ -1,0 +1,56 @@
+<style type="text/css">
+.metrics{
+  font-weight: bold;
+}
+.inputs{
+  background: linear-gradient(to bottom, #6db3f2 0%, #54a3ee 50%, #3690f0 51%, #1e69de 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 4em;
+    font-weight: 200;
+}
+.frame_text{
+    text-transform: uppercase;
+    color: #979797;
+}
+.left{
+  padding-left: 40px;
+}
+.heading{
+  text-align: center;text-align: center; font-size: 18px; padding-bottom: 20px; color: #979797;
+}
+.text-clr{
+  color: #979797;
+}
+</style>
+<div class="heading">
+<%=@view.name%> - <%=@name%>
+</div>
+<table id="agg_metrics" align="center">
+<tbody>
+    <tr class="metric">
+    <td id="unique_readers_val" class="inputs"><%=@user_count%></td>
+        <td id="stories_read_val" class="inputs left"><%=@page_view_count%></td>
+    </tr>
+    <tr class="metric_label text-clr frame_text" >
+       <td>Unique Readers</td>
+       <td class="left">Stories Read</td>
+    </tr>
+<tr class="spacer"></tr>
+    <tr class="metric">
+        <td id="pgs_per_session_val" class="inputs"><%=@pages_per_session%></td>
+        <td id="avg_session_duration_val" class="inputs left"><%=@avg_session_duration%></td>
+    </tr>
+    <tr class="metric_label text-clr frame_text">
+      <td>Pages / Session</td>
+      <td class="left">Avg. Session Duration</td>
+    </tr>
+</tbody>
+</table>
+
+<script type="text/javascript">
+$(function() {
+  window.history.pushState(null, "", "url_dashboard");
+});
+</script>

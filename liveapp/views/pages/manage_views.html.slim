@@ -1,0 +1,22 @@
+h1 Manage Views
+
+- if @users.any?
+
+  div#views
+    div#permissions
+      ul
+        -@accounts.each do |a|
+          li.account
+            = a.name
+            ul
+              - a.views.each do |v|
+                li.view_check_box
+                  = check_box_tag "view_ids[]", v.id
+                  = v.name
+      = select_tag :user_id, options_from_collection_for_select(@users, 'id', 'name')
+      br
+
+      = submit_tag "SAVE", id: "update_permissions"
+- else
+  h4
+    | There are no Non-Admin Users

@@ -1,0 +1,61 @@
+.container
+  header
+    span#account
+      - if @view.logo_url
+        = image_tag @view.logo_url, class: 'view-logo'
+      - else
+        | #{@view.name}
+    form#date_picker
+      label for="start_date"
+      input#start_date type="text" placeholder="Start Date: yyyy-mm-dd" value=@start_date
+      | -
+      label for="end_date"
+      input#end_date type="text" placeholder="End Date: yyyy-mm-dd" value=@end_date
+  
+  div#top_third
+    table#agg_metrics
+      tr.metric
+        td#stories_produced_val
+        td#stories_read_val
+      tr.metric_label
+        td Unique Pages
+        td Stories Read
+      tr.spacer
+      tr.metric
+        td#pgs_per_session_val
+        td#avg_session_duration_val
+      tr.metric_label
+        td Pages / Session
+        td Avg. Session Duration
+      tr.spacer
+      tr.metric
+        td#unique_readers_val
+      tr.metric_label
+        td Unique Readers
+    div.twitter_feed
+      = link_to 'View Twitter Profile →', twitter_profile_view_path(@view), class: 'twitter-profile-link' if @view.twitter_handle
+      = render partial: 'twitter' if @view.widget_id
+      br
+      div#twitter_mentions
+        div#mention_header
+          h1 Mentions
+        div#mention_list
+  
+  div#middle_third
+    table
+      tr.section_title
+        td
+          | Visitor Profile
+          br
+          = select_tag(:collection, options_for_select(["Acquisition", "City", "User Type", "Referral"]))
+        td.middle_label
+          | Key Visitor Domains
+      tr.middle_data
+        td#visitor_profile
+          svg#inner_circle
+        td
+          div#domain_cloud
+  div#bottom_third
+    h4.section_title Top Stories
+    h5.subtitle By Page Views
+    svg#page_views

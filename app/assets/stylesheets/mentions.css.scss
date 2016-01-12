@@ -1,0 +1,105 @@
+#twitter_mentions {
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  position: relative;
+  zoom: 1;
+  display: block;
+  width: 518px;
+  max-width: 100%;
+
+  #mention_header {
+    padding: 12px;
+    border-width: 0 0 1px;
+    box-shadow: 0 0 0 -3px;
+    position: relative;
+    z-index: 100;
+    h1 {
+      padding: 0;
+      font-weight: bold;
+      margin: 0;
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+
+  #mention_list {
+    overflow-x: hidden;
+    max-height: 236px;
+    overflow-y: scroll;
+
+    ol {
+      padding: 0;
+      margin: 0;
+      font: normal normal normal 12px/16px "Helvetica Neue",Roboto,"Segoe UI",Calibri,sans-serif;
+
+      li {
+        padding: 12px 12px 10px 69px;
+        border-width: 0 0 1px;
+        border: 1px solid #e8e8e8;
+        position: relative;
+        zoom: 1;
+        margin: 0;
+        font: normal normal normal 12px/16px "Helvetica Neue",Roboto,"Segoe UI",Calibri,sans-serif;
+        text-decoration: none;
+        text-transform: none;
+        vertical-align: baseline;
+        list-style: none;
+        outline: 0;
+
+        .header {
+          position: relative;
+          display: block;
+          font: normal normal normal 12px/16px "Helvetica Neue",Roboto,"Segoe UI",Calibri,sans-serif;
+          text-transform: none;
+          a.permalink {
+            text-decoration: none;
+            outline: 0;
+            position: relative;
+            z-index: 50;
+            float: right;
+            margin-top: 2px;
+            cursor: auto;
+            zoom: 1;
+            color: #707070;
+
+            &:visited {
+              color: #707070;
+            }
+          }
+
+          div.h-card {
+            a.profile {
+              text-decoration: none;
+              outline: 0;
+              font: normal normal normal 12px/16px "Helvetica Neue",Roboto,"Segoe UI",Calibri,sans-serif;
+              color: black;
+                &:visited {
+                  color: black;
+                }
+
+              img.avatar {
+                position: absolute;
+                top: 0;
+                left: -57px;
+                width: 48px;
+                height: 48px;
+                background: #fff;
+                border-radius: 4px;
+                border: 0;
+              }
+            }
+          }
+        }
+
+        p.e-entry-title {
+          margin: 0 5px 0 0;
+          overflow: hidden;
+          clear: both;
+          word-wrap: break-word;
+        }
+      }
+    }
+  }
+}

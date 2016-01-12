@@ -1,0 +1,15 @@
+li.h-entry.tweet.customisable-border
+  .header
+    = link_to (mention.published_at).strftime("%F"), "https://twitter.com/#{mention.user_handle}/status/#{mention.twitter_id}", class: 'u-url permalink customisable-highlight'
+    .h-card.p-author
+      = link_to("https://twitter.com/#{mention.user_handle}", class: 'u-url profile') do
+        = image_tag(mention.user_image, class: 'u-photo avatar')
+        span.full-name
+          span.p-name.customisable-highlight
+            b
+              = mention.user_name
+        span.p-nickname dir='ltr'
+          |  @#{mention.user_handle}
+  .e-entry-content
+    p.e-entry-title
+      = mention.body

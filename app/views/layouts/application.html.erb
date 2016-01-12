@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title || "LocalLabs" %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.2/jquery.tipsy.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.5/css/bootstrap-modal-bs3patch.css"></script>
+  <%= csrf_meta_tags %>
+  <script src="//use.typekit.net/lae8bro.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+  <%= render partial: 'layouts/header' %>
+  <%= render partial: 'layouts/banner' unless params[:controller] == 'views' && params[:action] == 'show' %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+</body>
+</html>
+
+
+

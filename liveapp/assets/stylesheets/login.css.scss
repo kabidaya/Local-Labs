@@ -1,0 +1,93 @@
+$local-orange: #FF4A1F;
+
+#lower_form, #views {
+  padding-top: 3%;
+  background: $local-orange;
+  margin-left: -8px;
+  margin-right: -8px;
+  height: 100vh;
+
+  form {
+    margin: auto;
+
+    input, select {
+      font-size: 16px;
+    }
+
+    input {
+      padding-left: 1em;
+      height: 3em;
+      margin-bottom: 10px;
+      width: 96%;
+      font-family: "proxima-nova", sans-serif;
+      border:none;
+      border-radius:3px;
+    }
+
+    #submit {
+      margin-top: 1em;
+      background: $local-orange;
+      text-transform: uppercase;
+      border-radius: 0;
+      border-color: white;
+      width: 100%;
+      color: white;
+      border: 1px solid white;
+      height: 3.5em;
+      cursor: pointer;
+    }
+  }
+
+  div.extra_links {
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: small;
+      float: right;
+
+      &:visited {
+        color: white;
+      }
+
+      &:first-child {
+        float: left;
+      }
+    }
+    a#solo {
+      float: none;
+    }
+  }
+}
+
+#views {
+  color: white;
+  padding-left: 3em;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  #permissions {
+    width: 33%;
+    .account {
+    }
+  }
+
+  #update_permissions {
+    margin-top: 1em;
+    background: inherit;
+    color: white;
+    border: 1px solid white;
+    padding: 0.5em;
+  }
+
+  #user_id {
+    width: 40%;
+  }
+}

@@ -1,0 +1,20 @@
+.view-listing
+  - if current_user.admin?
+    = link_to "Add an Account", new_account_path
+    = link_to "Manage User Views", manage_views_path
+    - @accounts.each do |account|
+      ul.account
+        | #{account.name} 
+        span
+          = link_to "Edit", edit_account_path(account), class: 'edit-account'
+          = link_to "Add View", new_account_view_path(account), class: 'add-view'
+        - account.views.where(id: @views.pluck(:id)).each do |view|
+          li.view
+            = link_to view.name, account_view_path(view.account, view)
+            = link_to "Twitter Profile", twitter_profile_view_path(view), class: 'twitter-profile'
+            = link_to "Edit", edit_view_path(view), class: 'edit-view'
+  -else
+    ul.view_list
+      - @views.each do |view|
+        li
+          = link_to view.name, account_view_path(view.account, view), class: 'view'

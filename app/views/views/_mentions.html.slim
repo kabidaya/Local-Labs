@@ -1,0 +1,10 @@
+div#twitter_mentions
+  div#mention_header
+    h1 Mentions
+  div#mention_list
+    - if @view.mentions.any?
+      ol
+        - @view.mentions.each do |mention|
+          = render partial: 'mention', locals: { mention: mention }
+    - else
+      h5 No Mentions Found

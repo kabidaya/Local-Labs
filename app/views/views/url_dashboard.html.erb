@@ -1,0 +1,108 @@
+<style type="text/css">
+.metrics{
+  font-weight: bold;
+}
+.inputs{
+  background: linear-gradient(to bottom, #6db3f2 0%, #54a3ee 50%, #3690f0 51%, #1e69de 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 4em;
+    font-weight: 200;
+    border: none !important;
+}
+.frame_text{
+    text-transform: uppercase;
+    color: #979797;
+}
+.left{
+  padding-left: 40px;
+  border: none !important;
+}
+.heading{
+  text-align: center;text-align: center; font-size: 18px; padding-bottom: 20px; color: #979797;
+}
+.text-clr{
+  color: #979797;
+}
+table {
+  border-collapse: collapse;
+  color: #000;
+}
+
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+}
+.story_details{
+      margin-bottom: 3%;
+}
+</style>
+<div class="heading">
+<%=@view.name%> - <%=@pipeline.name%> <%#=@pipeline.api_id if !@pipeline.nil?%>
+
+</div> 
+<input type="hidden" id="api_id" value="<%=@pipeline.api_id%>">
+<input type="hidden" id="view_id" value="<%=@view.id%>">
+
+<table id="agg_metrics" align="center">
+<tbody>
+    <tr class="metric">
+    <td id="unique_readers_val" class="inputs"><%=@user_count%></td>
+        <td id="stories_read_val" class="inputs left"><%=@page_view_count%></td>
+    </tr>
+    <tr class="metric_label text-clr frame_text" >
+       <td style="border: none !important;">Unique Readers</td>
+       <td class="left">Stories Read</td>
+    </tr>
+<tr class="spacer"></tr>
+    <tr class="metric">
+        <td id="pgs_per_session_val" class="inputs"><%=@pages_per_session%></td>
+        <td id="avg_session_duration_val" class="inputs left"><%=@avg_session_duration%></td>
+    </tr>
+    <tr class="metric_label text-clr frame_text">
+      <td style="border: none !important;">Pages / Session</td>
+      <td class="left">Avg. Session Duration</td>
+    </tr>
+</tbody>
+</table>
+<% story = Story.where("organization_id=?",@pipeline.api_id).map(&:story_id).uniq %>
+<%i=1%>
+<%if !story.nil? && story.count >= 1%>
+  <table align="center" class="story_details">
+    <thead>
+    <tr style="background:#ff7e2e">
+    <th>ID</th>
+    <th>Story</th>
+    <th>Views</th>
+    </tr>
+    </thead>
+  <% story.each do |s| %>
+   <% @dvpv = DailyViewPageView.where("permalink LIKE ? AND view_id = ? AND date >=  ? AND date <= ?","%#{s}%",@view.id, cookies[:start_date], cookies[:end_date] ).last %>
+    <%if i <= 10 && !@dvpv.nil? && @dvpv.page_views > 0%>
+    <% st = Story.where("story_id=?",s).last %>
+    <tbody>
+    <tr>
+    <td><%=s%></td>
+    <td><%=st.headline%></td>
+    <td><%= @dvpv.page_views  if !@dvpv.nil?%></td>
+    <input type="hidden" id="top_ban" value="10">
+    <%i=i+1%>
+    <%end%>
+    <%end%>
+    </tbody>
+  </table>
+<%end%>
+
+ <script type="text/javascript">
+$(function() {
+  var api=$("#api_id").val();
+  var view=$("#view_id").val();
+  window.history.pushState(null, "", "url_dashboard?view_id="+view+"&org_id="+api);
+  var topban = $("#top_ban").val();
+  if(topban!=10){
+  $(".story_details").hide();
+  }
+});
+ </script>

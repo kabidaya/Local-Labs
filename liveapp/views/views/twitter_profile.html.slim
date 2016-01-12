@@ -1,0 +1,19 @@
+h1
+  | @#{@view.twitter_handle} Twitter Profile
+
+form#twitter-date-picker
+  label for="start_date"
+  input#start_date type="text" placeholder="Start Date: yyyy-mm-dd" value=@start_date
+  | -
+  label for="end_date"
+  input#end_date type="text" placeholder="End Date: yyyy-mm-dd" value=@end_date
+
+#twitter-profile
+  #stream
+    = render partial: 'twitter' if @view.widget_id
+  div#twitter_mentions
+    div#mention_header
+      h1
+        | Mentions: 
+        span#mention-count 0
+    div#mention_list

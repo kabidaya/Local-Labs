@@ -1,0 +1,80 @@
+$local-orange: #FF4A1F;
+
+form#twitter-date-picker {
+  display: inline-block;
+  float: right;
+  z-index: 1000 !important;
+  margin-bottom: 50px;
+
+  input {
+    height: 40px;
+    margin: 0 10px 0 10px;
+    width: 110px;
+    font-size: 1.0em;
+    text-align: center;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #ccc;
+  }
+}
+
+.back_header {
+  color: $local-orange;
+  text-align: center;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+
+    &:hover {
+      color: red;
+    }
+    &:visited {
+      color: black;
+    }
+  }
+}
+
+#twitter-profile {
+
+  margin: auto;
+  margin-bottom: 20px;
+  width: 80%;
+  clear: both;
+
+  iframe {
+    height: 80vh !important;
+  }
+
+  div {
+    display: inline-block;
+  }
+
+  #stream, #twitter_mentions {
+    width: 45%;
+    position: absolute;
+  }
+
+  #stream {
+    left: 20px;
+  }
+
+  #twitter_mentions {
+    right: 20px;
+    height: 80vh !important;
+
+    #mention_header {
+      position: absolute;
+      top: 0;
+    }
+
+    #mention_list {
+      position: absolute;
+      top: 43px;
+      height: 100%;
+      max-height: 90%;
+    }
+  }
+}

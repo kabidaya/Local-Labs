@@ -1,0 +1,168 @@
+$local-orange: #FF4A1F;
+
+body {
+  font-family: "proxima-nova", sans-serif !important;
+
+  div.nav {
+    text-align: right;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li.header-link {
+        display: inline-block;
+      }
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+      padding-right: 1vw;
+      clear: both;
+
+      &:hover {
+        color: red;
+      }
+
+      &:visited {
+        color: black;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+}
+.container {
+  max-width: 960px; 
+  margin: 0 auto;
+}
+form {
+  width: 25%;
+  min-width: 300px;
+  text-transform: inherit;
+
+  .fieldset {
+    clear: both;
+
+    label {
+      float: left;
+    }
+
+    input, select {
+      // float: right;
+      width: 68%;
+      font-family: "proxima-nova", sans-serif !important;
+    }
+    submit.btn{
+      border: 1px solid white;
+
+    }
+  }
+}
+
+div#banner {
+  height: 100px;
+
+  div.logo_holder {
+    width: 100%;
+    text-align: center;
+   
+    span#logo {
+      font-size: 2em;
+      span.local {
+        color: #999999;
+      }
+      }
+      span.labs {
+        color: #FBB24C;
+      }
+    }
+  }
+  h1, h2 {
+        font-size: 18px;
+        text-align: center;
+        font-weight: 300;
+}
+.first-logo {
+        margin-right:60px;
+      }
+.notice {
+  color: green;
+  text-align: center;
+}
+
+.alert {
+  color: red;
+  text-align: center;
+}
+
+.view-listing {
+  padding-top: 3%;
+  padding-left: 1em;
+  background: $local-orange;
+  margin-left: -8px;
+  margin-right: -8px;
+  color: white;
+  a {
+    color: white !important;
+    margin-right:20px;
+  }
+
+  .account {
+    .view {
+      margin-top: 1vh;
+      margin-left: 2em;
+    }
+  }
+}
+
+.view_list {
+  list-style-type: none;
+  margin: auto;
+  li {
+    display: inline-block;
+
+  }
+  .view {
+    margin: 1em;
+    display: inline-block;
+    border-radius: 4px;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    background: white;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.10);
+    cursor: pointer;
+    color: $local-orange !important;
+    text-decoration: none;
+    font-weight: 700;
+    font-size:14px;
+    color: $local-orange !important;
+
+
+    a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size:14px;
+      color: $local-orange !important;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+h2#forgot {
+  text-align: center;
+  color: white;
+}
+
+.center {
+  text-align: center;
+}

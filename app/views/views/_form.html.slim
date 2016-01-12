@@ -1,0 +1,22 @@
+#lower_form
+  = form_for @view, multipart: true do |f|
+    - if @view.account_id && @view.new_record?
+      = f.hidden_field :account_id, value: @view.account_id
+    -else
+      .fieldset
+        = f.label :account_id
+        = f.select :account_id, options_from_collection_for_select(Account.all, 'id', 'name', @view.account_id)
+    .fieldset
+      = f.text_field :name, :placeholder => 'Name'
+    .fieldset
+      = f.text_field :url, :placeholder => 'URL'
+    .fieldset
+      = f.text_field :twitter_handle, :placeholder => 'Twitter username'
+    .fieldset
+      = f.text_field :widget_id, :placeholder => 'Twitter widget ID'
+    .fieldset
+      = f.text_field :analytics_id, :placeholder => 'Google analytics ID'
+    .fieldset
+      = f.label :logo, 'View Logo File'
+      = f.file_field :logo
+    = f.submit :id => 'submit'
