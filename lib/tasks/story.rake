@@ -5,7 +5,7 @@ require 'uri'
 namespace :story do
 desc 'Stored the site url in site details'
 	task :pull_all => :environment do
- (16196..25000).each do |n|
+ (1..25000).each do |n|
  p "pageno_#{n}"
  begin
  response = HTTParty.get("https://pipeline-api.locallabs.com/api/v1/stories?published_at=#{(Date.today-1).strftime('%Y-%m-%d')}&page=#{n}",headers: {"Authorization" => "TJX5h5NUpQRreu6z9DEh"})
@@ -66,7 +66,6 @@ desc 'Stored the site url in site details'
 						end
 					end #org count end
 				end #org nil end
-	 		
 	 	end # json loop end
 	else
 	   	   break

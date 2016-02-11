@@ -78,7 +78,7 @@ class ViewsController < ApplicationController
     start_date = params[:start_date]
     end_date = params[:end_date]
     @view = View.find(params[:id])
-    domain_sessions = top_entries("domain",params[:id],@view.summed_network_domain_sessions(start_date, end_date), percentile: 0.001)
+    domain_sessions = top_entries("domain",params[:id],@view.summed_network_domain_sessions(start_date, end_date), percentile: 0.0001)
     page_views = @view.daily_view_page_views.no_root.between(start_date, end_date).group("permalink").sum(:page_views)
     sites  = page_views.to_a.sort { |a, b| b[1] <=> a[1] }.map{ |pv| pv[0] }[0..19]
     page_views = sites.map { |permalink| { permalink: permalink, page_views: page_views[permalink] } }
@@ -135,7 +135,7 @@ class ViewsController < ApplicationController
 
   private
     def top_entries(type, id, collection, args = {})
-      percentile =  0.0001
+      percentile = args[:percentile] || 0.01
       total_sessions = collection.collect { |d| d.value }.sum
       return_domains = []
       # other = { key: "other", text: "other", sessions: 0, weight: 0, value: 0 }
@@ -144,13 +144,14 @@ class ViewsController < ApplicationController
       pct = ds.value.to_f / total_sessions 
         if pct >= percentile && ds.key != "(not set)"
          c_name=NewPipelineApi.where("url=? or url=? or url=? or url=? AND url IS NOT NULL", "https://www.#{ds.key}","http://www.#{ds.key}","http://#{ds.key}", "https://#{ds.key}").last 
-         if !c_name.nil?
+         if !c_name.nil? && type == "domain"
           ss <<  ds.key
           com_detail= "#{c_name.name}"+"^"+"#{ds.key}"
           entry = { key: com_detail, weight: pct, value: ds.value-5, text: com_detail, sessions: ds.value }
          return_domains << entry
          else
-          # com_detail= "#{ds.key}"+"^"+"#{ds.key}"
+          entry = { key: ds.key, weight: pct, value: ds.value, text: ds.key, sessions: ds.value }
+          return_domains << entry
          end
            ss <<  ds.key
         else

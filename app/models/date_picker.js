@@ -248,20 +248,18 @@ var tag_list = new Array();
 domainCloud.prototype.fill = function(data) {
   var start_date=$("#start_date").val();
   var end_date=$("#end_date").val();
-  tag_list = [];
   for ( var i = 0; i < data.length; ++i ) {
     var url = data[i].key;
     var url_val = data[i].value;
     console.log(url+"......");
-    if (url.indexOf("^") > -1) { 
     var new_url = url.split("^");
     var url_name=new_url[0]
     var url_link=new_url[1]
     var view_id=$("#view_id").val();
     if( url.includes("other"))
       {
-          // console.log(1);
-         // tag_list.push({text: url, weight: url_val});
+          console.log(1);
+         tag_list.push({text: url, weight: url_val});
       }
       else if (url.includes("unknown."))
       {
@@ -269,17 +267,13 @@ domainCloud.prototype.fill = function(data) {
       }
       else
       {
-        // console.log(view_id);
-        // console.log(url_name+"---"+url_link);
-
+        console.log(view_id);
+        console.log(url_name+"---"+url_link);
         tag_list.push({
         text: url_name, weight: url_val, link: {href: "/url_dashboard?url="+url_link+"&start_date="+start_date+"&end_date="+end_date+"&view_id="+view_id+"&c_name="+url_name, target: "_blank"}
         // text: url_name, weight: url_val, link: "/url_dashboard?url="+url_link+"&start_date="+start_date+"&end_date="+end_date+"&view_id="+view_id
-         
          });
-        console.log(tag_list.length);
       }
-        }
 }
   // var tag_list = data
   $(this.el).html('');
